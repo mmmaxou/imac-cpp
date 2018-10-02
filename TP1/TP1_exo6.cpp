@@ -9,14 +9,16 @@
 
 namespace TP_CPP_IMAC2
 {
-  float mean(std::vector<int> &vec) {
+  float mean(const std::vector<int> &vec)
+  {
     float sum = 0;
     for ( size_t i=0; i<vec.size(); i++) 
       sum += vec[i];
     return sum / vec.size(); 
   }
   
-  float meanCopy(std::vector<int> vec) {
+  float meanCopy(const std::vector<int> vec)
+  {
     float sum = 0;
     for ( size_t i=0; i<vec.size(); i++) 
       sum += vec[i];

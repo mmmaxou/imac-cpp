@@ -23,6 +23,7 @@ namespace TP_CPP_IMAC2
     std::cout << "3e Element : " << intVec[2] << " : " << &intVec[2] << std::endl;
     std::cout << "Taille d'un élément : " << sizeof( intVec[0] ) << std::endl;
     intVec.pop_back();
+    std::cout << "Taille du vecteur : " << intVec.size() << std::endl;
     intVec.clear();
     std::cout << "Taille du vecteur : " << intVec.size() << std::endl;
 
