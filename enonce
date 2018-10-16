@@ -4,3 +4,9 @@ Compilable sur les machines
 
 Commande : 
 g++ -Wall -O2 <filename> -o <outputname>
+convert <destination>.jpg <source>.ppm
+feh <filename>.ppm
+
+___ exo 4 
+g++ -Wall -O2 ImageRGBU8.cpp TP4_exo1.cpp -o TP4_exo1 && ./TP4_exo1
+
