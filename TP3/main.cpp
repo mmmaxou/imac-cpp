@@ -1,27 +1,22 @@
 // ================================
 // POO C++ - IMAC 2
-// TP 4 - Exercice 1
+// TP 3 - Exercice 1
 // ================================
 
 #include <iostream>
 #include <cstdlib>
-#include "./Rectangle.hpp"
-#include "./Carre.hpp"
+
+#include "ImageRGBU8.hpp"
+#include "ioPPM.hpp"
 
 namespace TP_CPP_IMAC2
 {
   int main(int argc, char *argv[])
   {
-    Rectangle r1(2.6, 4.42), r2;
-    std::cout << r1.surface() << std::endl;
-    r1.setWidth(3.9);
-    std::cout << r1.surface() << std::endl;
-    
-    Carre c1(1.5);
-    std::cout << c1.surface() << std::endl;
-    
-    std::cout << r1.whoAmI() << std::endl;
-    std::cout << c1.whoAmI() << std::endl;
+    ImageRGBU8 img(50, 50);
+    img(25, 25, 1) = 0;
+    img(25, 25, 2) = 0;
+    writePPM("toto.ppm", img);
     
     return 0;
   }
