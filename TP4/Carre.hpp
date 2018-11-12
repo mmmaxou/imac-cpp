@@ -7,7 +7,14 @@ class Carre : public Rectangle {
   public:
     Carre();
     Carre(const double &s);
-    ~Carre();
+    ~Carre();  
+  
+    inline void setWidth(const double &w) {setBoth(w);};
+    inline void setheight(const double &h) {setBoth(h);};
+    inline void setBoth(const double &b) {   
+      _width = b;   
+      _height = b;   
+    }
   
     std::string whoAmI() const;
 };

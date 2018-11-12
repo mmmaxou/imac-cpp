@@ -10,7 +10,11 @@ feh <filename>.ppm
 ___ exo 3 
 g++ -Wall -O2 ImageRGBU8.cpp main.cpp -o TP3_exo1 && ./TP3_exo1
 
-__ exo 4
+___ exo 4
 g++ -Wall -O2 Rectangle.cpp main.cpp -o TP4_exo1 && ./TP4_exo1
 g++ -Wall -O2 Rectangle.cpp Carre.cpp main.cpp -o TP4_exo1 && ./TP4_exo1
+g++ -Wall -O2 Rectangle.cpp Carre.cpp Ellipse.cpp Cercle.cpp main.cpp -o TP4_exo1 && ./TP4_exo1
+g++ -Wall -O2 Rectangle.cpp Carre.cpp Ellipse.cpp Cercle.cpp main.cpp -o TP4_exo1 && ./TP4_exo1
 
+___ exo 5
+make && ./main

@@ -3,13 +3,16 @@
 #include <cstdlib>
 #include "./Rectangle.hpp"
 
-Rectangle::Rectangle() {
-  _width = 0; 
-  _height = 0; 
+Rectangle::Rectangle()
+{  
+  _width = 1.;
+  _height = 1.;
 }
-Rectangle::Rectangle(const double &w, const double &h) :
-  _width(w), _height(h)
-{}
+Rectangle::Rectangle(const double &w, const double &h)
+{
+  _width = w;
+  _height = h;
+}
 Rectangle::~Rectangle() {
   std::cout << "Destroy that Rectangle !" << std::endl;
 }

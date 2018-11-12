@@ -7,12 +7,18 @@
 #include <cstdlib>
 #include "./Rectangle.hpp"
 #include "./Carre.hpp"
+#include "./Ellipse.hpp"
+#include "./Cercle.hpp"
 
 namespace TP_CPP_IMAC2
 {
+  void afficher(Figure *f){
+    f->whoAmI();
+  }
+  
   int main(int argc, char *argv[])
   {
-    Rectangle r1(2.6, 4.42), r2;
+    Rectangle r1(2.6, 4.42);
     std::cout << r1.surface() << std::endl;
     r1.setWidth(3.9);
     std::cout << r1.surface() << std::endl;
@@ -22,6 +28,13 @@ namespace TP_CPP_IMAC2
     
     std::cout << r1.whoAmI() << std::endl;
     std::cout << c1.whoAmI() << std::endl;
+    
+    Ellipse e1(3.2, 6.5);
+    Cercle s1(4.);
+    
+    Rectangle r2 = r1;
+    afficher(&r1);
+    afficher(&e1);
     
     return 0;
   }
