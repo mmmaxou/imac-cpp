@@ -102,9 +102,12 @@ public :
 
 
     /// CUSTOM
-    /// \bried mean an imageby a given kernel size
+    /// \bried mean an image by a given kernel size
     /// \param kernelSize : the kernel size to use (between 2 and 17)
     void mean(const unsigned int kernelSize);
+
+    /// \bried detect the edges of the image
+    void edgeDetector();
 
 };
 

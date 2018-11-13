@@ -83,11 +83,8 @@ void ImageRGBU8::mean(const unsigned int kernelSize) {
         throw std::invalid_argument("The kernel size must be an odd number: Given:" + std::to_string(kernelSize));
     }
 
-    // W = 802
-    // H = 834
-
     unsigned int range = (kernelSize-1)/2;
-    std::cout << "Range: " << range << std::endl;
+    //std::cout << "Range: " << range << std::endl;
     int cpt=0;
     std::vector<unsigned char> nouveau(_width*_height*3);
 
@@ -125,6 +122,7 @@ void ImageRGBU8::mean(const unsigned int kernelSize) {
                 }
             } catch (std::exception &e) {
                 std::cerr << "Error:" << e.what() << "| nRange = " << nRange << " | i:" << i << " | j:" << j << std::endl;
+                throw;
             }
             if ( divider != 0 ) {
                 nouveau[(j*_width+i)*3+0] = sumR / divider;
@@ -135,5 +133,62 @@ void ImageRGBU8::mean(const unsigned int kernelSize) {
     }
     _data = nouveau;
 
-    std::cout << "CPT: " << cpt << std::endl;
+    std::cout << "Operations: " << cpt << std::endl;
+}
+
+void ImageRGBU8::edgeDetector() {
+    toGreyScale();
+
+
+    int kernelSize = 3;
+    unsigned int range = (kernelSize-1)/2;
+    //std::cout << "Range: " << range << std::endl;
+    int cpt=0;
+    std::vector<unsigned char> nouveau(_width*_height*3);
+
+    for(size_t i=0; i<_width-0; i++) {
+        for(size_t j=0; j<_height-0; j++) {
+            // On parcours chaque pixels de l'intérieur de l'image sans se soucier des contours
+            int spaceWR, spaceHR;
+
+            spaceWR = _width-i;
+            spaceHR = _height-j;
+            // std::cout << "nRange = " << nRange << "| WR:" << spaceWR << " | WL:" << spaceWL << " | HL:" << spaceHL << " | HR:" << spaceHR <<std::endl;
+
+            int minL = std::min(i, j);
+            int minR = std::min(spaceWR, spaceHR);
+
+            unsigned int min = std::min(minL, minR);
+            int nRange = std::min(range, min);
+            //std::cout << nRange;
+
+
+            int sum = 0;
+            try {
+                if (nRange != 0) {
+                    for (int x=-nRange; x<nRange; x++) {
+                        for(int y=-nRange; y<nRange; y++) {
+                            cpt++;
+                            if (x == 0 && y == 0)
+                                sum += (*this)(i, y, 0)*8;
+
+                            else
+                                sum -= (*this)(i+x ,j+y ,0);
+
+                        }
+                    }
+                }
+            } catch (std::exception &e) {
+                std::cerr << "Error:" << e.what() << "| nRange = " << nRange << " | i:" << i << " | j:" << j << std::endl;
+                throw;
+            }
+
+            nouveau[(j*_width+i)*3+0] = sum;
+            nouveau[(j*_width+i)*3+1] = sum;
+            nouveau[(j*_width+i)*3+2] = sum;
+        }
+    }
+    _data = nouveau;
+
+    std::cout << "Operations: " << cpt << std::endl;
 }

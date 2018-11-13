@@ -10,6 +10,7 @@
 #include "./Threshold.hpp"
 #include "./RemoveChannel.hpp"
 #include "./Mean.hpp"
+#include "./EdgeDetector.hpp"
 #include "./ImageRGBU8.hpp"
 #include "./ioPPM.hpp"
 
@@ -18,26 +19,29 @@ namespace TP_CPP_IMAC2
 int main(int argc, char *argv[])
 {
   // read image
-  std::string ppmFile = "mandelbrot.ppm";
+  std::string ppmFile = "ultraman.ppm";
   ImageRGBU8 image1;
   readPPM(ppmFile, image1);
 
   // apply filter and save
-  Threshold t1(160);
+  Threshold t1(200);
   Threshold t2(220);
   RemoveChannel rc1(2);
   RemoveChannel rc2(1);
-  Mean k1(3);
-  Mean k2(9);
-  Filters filters(3);
+  Mean m1(7);
+  Mean m2(9);
+  EdgeDetector e1;
+  Filters filters(5);
   try
   {
     //filters.addFilter(t1);
     //filters.addFilter(t2);
     //filters.addFilter(rc1);
     //filters.addFilter(rc2);
-    filters.addFilter(k1);
-    filters.addFilter(k2);
+    filters.addFilter(m1);
+    //filters.addFilter(m2);
+    filters.addFilter(e1);
+    filters.addFilter(t1);
 
     filters.applyFilters(image1);
   } catch( std::exception const &e ) {

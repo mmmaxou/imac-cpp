@@ -26,7 +26,7 @@ void Filters::addFilter(const Filter &filter)
 {
   if (_nbFilters == _size)
   {
-    throw std::out_of_range("Taille du tableau (" + std::to_string(_size) + ") trop petite");
+    throw std::out_of_range("Filter.cpp:Taille du tableau (" + std::to_string(_size) + ") trop petite");
   }
   _filters[_nbFilters] = &filter;
   _nbFilters++;
