@@ -4,9 +4,9 @@
 #include "./ImageRGBU8.hpp"
 
 class Filter {  
-  protected:
+  public:
     virtual  
-      void applyFilter (const ImageRGBU8 &img) const =0;
+      void applyFilter (ImageRGBU8 &img) const =0;
 };
 
 #endif

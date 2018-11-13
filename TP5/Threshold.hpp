@@ -4,14 +4,15 @@
 #include "./ImageRGBU8.hpp"
 #include "./Filter.hpp"
 
-class Threshold : public Filter {  
+class Threshold : public Filter
+{
   public:
     Threshold();
     Threshold(const unsigned char &t);
-    void applyFilter (const ImageRGBU8 &img) const;
-  
+    void applyFilter(ImageRGBU8 &img) const;
+
   private:
-    unsigned char _threshold;
+    const unsigned char _threshold;
 };
 
 #endif

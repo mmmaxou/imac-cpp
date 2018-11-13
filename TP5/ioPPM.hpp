@@ -1,10 +1,11 @@
+#ifndef __IOPPM__HPP
+#define __IOPPM__HPP
+
 #include <iostream>
 #include <string>
 #include <fstream>
 
 #include "ImageRGBU8.hpp"
-#ifndef __IOPPM__HPP
-#define __IOPPM__HPP
 
 /// \brief read a P6 PPM image from a file
 /// \param filename : file the image name (PPM, P6 = RGB, binaray)
