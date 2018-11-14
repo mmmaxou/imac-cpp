@@ -8,23 +8,28 @@
 #include <vector>
 #include <deque>
 #include <list>
+#include <map>
 #include <algorithm>
 #include <cstdlib>
 
 #include "./Error.hpp"
+#include "./Majuscule.hpp"
+#include "./AjoutSiPair.hpp"
 
-namespace TP_CPP_IMAC2_EXERCICE1
-{
-  void displayTab(std::vector<int> &t) {
-    std::cout << "Vector display (" << t.size() << "): " << std::endl;
-    std::vector<int>::iterator iter;
-    for(iter = t.begin(); iter != t.end(); iter++) {
-      std::cout << *iter << std::endl; 
+template <typename C>
+  void displayCollection(C &collec) {
+    std::cout << "Collection display (" << collec.size() << "): " << std::endl;
+    typename C::iterator it;
+    for(it = collec.begin(); it != collec.end(); it++) {
+      std::cout << *it << std::endl; 
     }    
   }
+namespace TP_CPP_IMAC2_EXERCICE1
+{
   int main(int argc, char *argv[])
   {
     // Exercice 1
+    std::cout << "TP_CPP_IMAC2_EXERCICE1" << std::endl;
     // 1_ Empty int vector
     std::vector<int> tab;
     
@@ -50,11 +55,7 @@ namespace TP_CPP_IMAC2_EXERCICE1
     std::cout << "Vector size: " << tab.size() << std::endl;
     
     // 7_ Display Vector
-    std::cout << "Vector display: " << std::endl;
-    std::vector<int>::iterator iter;
-    for(iter = tab.begin(); iter != tab.end(); iter++) {
-      std::cout << *iter << std::endl; 
-    }
+    displayCollection(tab);
     return 0;
   }
 }
@@ -63,6 +64,7 @@ namespace TP_CPP_IMAC2_EXERCICE2
   int main(int argc, char *argv[])
   {
     // Exercice 2
+    std::cout << "TP_CPP_IMAC2_EXERCICE2" << std::endl;
     std::vector<std::string> v1(1, "Test");
     std::vector<std::string> v2(1, "Swap");
     
@@ -77,16 +79,10 @@ namespace TP_CPP_IMAC2_EXERCICE2
 }
 namespace TP_CPP_IMAC2_EXERCICE3
 {
-  void displayTab( std::vector<int> &t) {
-    std::cout << "Vector display (" << t.size() << "): " << std::endl;
-    std::vector<int>::iterator iter;
-    for(iter = t.begin(); iter != t.end(); iter++) {
-      std::cout << *iter << std::endl; 
-    }    
-  }
   int main(int argc, char *argv[])
   {
     // Exercice 3
+    std::cout << "TP_CPP_IMAC2_EXERCICE3" << std::endl;
     // 1_
     std::vector<int> v(20);
     
@@ -96,13 +92,13 @@ namespace TP_CPP_IMAC2_EXERCICE3
     }
     
     // 3_ Display
-    displayTab(v);
+    displayCollection(v);
     
     // 4_ Sort
     std::sort(v.begin(), v.end());
     
     // 5_ Display
-    displayTab(v);
+    displayCollection(v);
     
     // 6_ Count
     int count = std::count(v.begin(), v.end(), 7);
@@ -113,16 +109,10 @@ namespace TP_CPP_IMAC2_EXERCICE3
 }
 namespace TP_CPP_IMAC2_EXERCICE4
 {
-  void displayDeque( std::deque<int> &deque) {
-    std::cout << "Deque display (" << deque.size() << "): " << std::endl;
-    std::deque<int>::iterator iter;
-    for(iter = deque.begin(); iter != deque.end(); iter++) {
-      std::cout << *iter << std::endl; 
-    }    
-  }
   int main(int argc, char *argv[])
   {
     // Exercice 4
+    std::cout << "TP_CPP_IMAC2_EXERCICE4" << std::endl;
     // 1_ Declaration
     std::deque<int> d(5);
     
@@ -132,13 +122,13 @@ namespace TP_CPP_IMAC2_EXERCICE4
     }
     
     // 3_ Display
-    displayDeque(d);
+    displayCollection(d);
     
     // 4_ Ajout
     for(unsigned int i=0; i<5; i++) {
       d.push_front(std::rand() % 21);
       d.pop_back();
-      displayDeque(d);
+      displayCollection(d);
     }
     
     return 0;
@@ -146,16 +136,10 @@ namespace TP_CPP_IMAC2_EXERCICE4
 }
 namespace TP_CPP_IMAC2_EXERCICE5
 {
-  void displayList( std::list<std::string> &list) {
-    std::cout << "List display (" << list.size() << "): " << std::endl;
-    std::list<std::string>::iterator iter;
-    for(iter = list.begin(); iter != list.end(); iter++) {
-      std::cout << *iter << std::endl; 
-    }    
-  }
   int main(int argc, char *argv[])
   {
     // Exercice 5
+    std::cout << "TP_CPP_IMAC2_EXERCICE5" << std::endl;
     // 1_ Adding
     std::list<std::string> lPhilo;
     lPhilo.push_back("Platon");
@@ -173,28 +157,106 @@ namespace TP_CPP_IMAC2_EXERCICE5
     // 3_Display
     lPhilo.sort();
     lMath.sort();
-    displayList(lPhilo);
-    displayList(lMath);
+    displayCollection(lPhilo);
+    displayCollection(lMath);
     
     // 4_ Fusion
     std::list<std::string> lFusion;
     lFusion.merge(lMath);
     lFusion.merge(lPhilo);
-    displayList(lFusion);
+    displayCollection(lFusion);
     
     // 5_ Unique
     lFusion.unique();
-    displayList(lFusion);
+    displayCollection(lFusion);
     
     // 6_ Revert
     lFusion.reverse();
-    displayList(lFusion);
+    displayCollection(lFusion);
     
     
     return 0;
   }
 }
-
+namespace TP_CPP_IMAC2_EXERCICE6
+{
+  int main(int argc, char *argv[])
+  {
+    // Exercice 6
+    std::cout << "TP_CPP_IMAC2_EXERCICE6" << std::endl;
+    
+    // Map creation
+    std::map<std::string, int> studentsAge;
+    
+    // Adding students
+    studentsAge.insert( std::pair<std::string, int>("Ali", 25) );
+    studentsAge.insert( std::pair<std::string, int>("Jean", 22) );
+    studentsAge.insert( std::pair<std::string, int>("Pierre", 20) );
+    studentsAge.insert( std::pair<std::string, int>("Sara", 19) );
+    studentsAge.insert( std::pair<std::string, int>("Sofia", 18) );
+    
+    // Age and Name display
+    std::cout << "Students list(" << studentsAge.size() << ") and their age: " << std::endl;
+    std::map<std::string, int>::iterator it;
+    for(it = studentsAge.begin(); it != studentsAge.end(); it++) {
+      std::cout << it->first << " is " << it->second << " yo." << std::endl; 
+    }
+    
+    // "Marie" age if exist
+    it = studentsAge.find("Marie");
+    if(it == studentsAge.end())
+      std::cerr << "Marie's age doesn't exist." << std::endl;
+    else
+      std::cout << "Marie is " << it->second << " yo." << std::endl;
+    
+    return 0;
+  }
+}
+namespace TP_CPP_IMAC2_EXERCICE7
+{
+  int main(int argc, char *argv[])
+  {
+    // Exercice 7
+    std::cout << "TP_CPP_IMAC2_EXERCICE7" << std::endl;
+    Majuscule foncteur;
+    char tab[5] = {'i', 'm', 'a', 'c', 0};
+    std::cout << "Tab content: " << tab << std::endl;
+    for(int i=0; i<4; i++) {
+      foncteur(tab[i]);
+    }
+    std::cout << "Tab content: " << tab << std::endl;
+    
+    return 0;
+  }
+}
+namespace TP_CPP_IMAC2_EXERCICE8
+{
+  int main(int argc, char *argv[])
+  {
+    // Exercice 8
+    std::cout << "TP_CPP_IMAC2_EXERCICE8" << std::endl;
+    
+    AjoutSiPair foncteur;
+    
+    std::list<int> nb;
+    nb.push_back(17);
+    nb.push_back(12);
+    nb.push_back(9);
+    nb.push_back(3);
+    nb.push_back(2);
+    nb.push_back(6);
+    nb.push_back(13);
+    displayCollection(nb);
+    std::list<int>::iterator it;
+    for(it = nb.begin(); it != nb.end(); it++) {
+      foncteur(*it);
+    }    
+    displayCollection(nb);
+    
+    
+    return 0;
+  }
+}
 // Fonction main classique, point d'entrée du programme
 int main(int argc, char *argv[])
 {
@@ -202,6 +264,9 @@ int main(int argc, char *argv[])
   //return TP_CPP_IMAC2_EXERCICE2::main(argc, argv);
   //return TP_CPP_IMAC2_EXERCICE3::main(argc, argv);
   //return TP_CPP_IMAC2_EXERCICE4::main(argc, argv);
-  return TP_CPP_IMAC2_EXERCICE5::main(argc, argv);
+  //return TP_CPP_IMAC2_EXERCICE5::main(argc, argv);
+  //return TP_CPP_IMAC2_EXERCICE6::main(argc, argv);
+  //return TP_CPP_IMAC2_EXERCICE7::main(argc, argv);
+  return TP_CPP_IMAC2_EXERCICE8::main(argc, argv);
 }
 
