@@ -17,7 +17,7 @@ namespace TP_CPP_IMAC2
     int b = 0;
     
     try {
-      if (b==0) throw Error(1, 1, "Division by 0");
+      if (b==0) throw Error("Division by 0");
       std::cout << "a/2 = " << a/2 << std::endl;
       std::cout << "a/b = " << a/b << std::endl;
       std::cout << "a/5 = " << a/5 << std::endl;      
